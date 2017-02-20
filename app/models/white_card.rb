@@ -1,2 +1,0 @@
-class WhiteCard < ApplicationRecord
-end
