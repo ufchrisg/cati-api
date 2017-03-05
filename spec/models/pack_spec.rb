@@ -11,6 +11,11 @@ RSpec.describe Pack, type: :model do
       pack = FactoryGirl.build(:no_name_pack)
       expect(pack).not_to be_valid
     end
+    it "requires unique name" do
+      FactoryGirl.create(:pack)
+      pack = FactoryGirl.build(:pack)
+      expect(pack).not_to be_valid
+    end
   end
 
 end
