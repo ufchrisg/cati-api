@@ -15,6 +15,11 @@ RSpec.describe BlackCard, type: :model do
       @black_card.text = "No blanks here"
       expect(@black_card).not_to be_valid
     end
+    it "requires unique text" do
+      FactoryGirl.create(:black_card)
+      black_card = FactoryGirl.build(:black_card)
+      expect(black_card).not_to be_valid
+    end
   end
 
 end

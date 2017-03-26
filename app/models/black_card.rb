@@ -1,3 +1,3 @@
 class BlackCard < ApplicationRecord
-	validates :text, format: { with: /\{_\}/ }
+	validates :text, format: { with: /\{_\}/ }, uniqueness: true
 end
