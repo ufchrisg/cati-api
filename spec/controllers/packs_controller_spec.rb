@@ -2,13 +2,9 @@ require 'rails_helper'
 
 RSpec.describe PacksController, type: :controller do
 
-  let(:valid_attributes) {
-    FactoryGirl.build(:pack).attributes.symbolize_keys
-  }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:pack) }
 
-  let(:invalid_attributes) {
-    FactoryGirl.build(:no_name_pack).attributes.symbolize_keys
-  }
+  let(:invalid_attributes) { FactoryGirl.attributes_for(:no_name_pack) }
 
   let(:valid_session) { {} }
 
@@ -58,9 +54,7 @@ RSpec.describe PacksController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        FactoryGirl.build(:updated_pack).attributes.symbolize_keys
-      }
+      let(:new_attributes) { FactoryGirl.attributes_for(:updated_pack) }
 
       after(:each) { expect(response.status).to eq(200) }
 
@@ -68,7 +62,7 @@ RSpec.describe PacksController, type: :controller do
         pack = FactoryGirl.create(:pack)
         put :update, params: {id: pack.to_param, pack: new_attributes}, session: valid_session
         pack.reload
-        expect(pack.name).to eq("Pack 1")
+        expect(pack.name).to match(/^Expansion/)
       end
 
       it "assigns the requested pack as @pack" do

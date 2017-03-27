@@ -16,7 +16,6 @@ class BlackCardsController < ApplicationController
   # POST /black_cards
   def create
     @black_card = BlackCard.new(black_card_params)
-
     if @black_card.save
       render json: @black_card, status: :created, location: @black_card
     else
@@ -46,6 +45,6 @@ class BlackCardsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def black_card_params
-      params.require(:black_card).permit(:text)
+      params.require(:black_card).permit(:text, :pack_id)
     end
 end

@@ -2,13 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BlackCardsController, type: :controller do
 
-  let(:valid_attributes) {
-    FactoryGirl.build(:black_card).attributes.symbolize_keys
-  }
+  let(:valid_attributes) { attributes_with_foreign_keys(:black_card) }
 
-  let(:invalid_attributes) {
-    FactoryGirl.build(:invalid_black_card).attributes.symbolize_keys
-  }
+  let(:invalid_attributes) { attributes_with_foreign_keys(:invalid_black_card) }
 
   let(:valid_session) { {} }
 
@@ -58,9 +54,7 @@ RSpec.describe BlackCardsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        FactoryGirl.build(:updated_black_card).attributes.symbolize_keys
-      }
+      let(:new_attributes) { FactoryGirl.attributes_for(:updated_black_card) }
 
       after(:each) { expect(response.status).to eq(200) }
 

@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :pack do
-    name "Original"
+    sequence(:name) { |n| "Pack #{n}" }
   end
   factory :updated_pack, class: Pack do
-    name "Pack 1"
+    sequence(:name) { |n| "Expansion #{n}" }
   end
   factory :no_name_pack, class: Pack do
+    name ""
   end
 end

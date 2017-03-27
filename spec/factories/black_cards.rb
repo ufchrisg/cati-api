@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :black_card do
+    pack
     text "Riddle me this: {_}"
   end
   factory :updated_black_card, class: BlackCard do

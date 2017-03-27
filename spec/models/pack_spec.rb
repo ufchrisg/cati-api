@@ -12,9 +12,9 @@ RSpec.describe Pack, type: :model do
       expect(pack).not_to be_valid
     end
     it "requires unique name" do
-      FactoryGirl.create(:pack)
-      pack = FactoryGirl.build(:pack)
-      expect(pack).not_to be_valid
+      pack1 = FactoryGirl.create(:pack)
+      pack2 = FactoryGirl.build(:pack, :name => pack1.name)
+      expect(pack2).not_to be_valid
     end
   end
 
