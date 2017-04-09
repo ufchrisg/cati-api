@@ -18,4 +18,10 @@ RSpec.describe Pack, type: :model do
     end
   end
 
+  describe "associations" do
+    it "has many black cards" do
+      association = described_class.reflect_on_association(:black_cards)
+      expect(association.macro).to eq :has_many
+    end
+  end
 end
