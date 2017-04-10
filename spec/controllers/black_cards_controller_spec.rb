@@ -62,7 +62,7 @@ RSpec.describe BlackCardsController, type: :controller do
         black_card = BlackCard.create! valid_attributes
         put :update, params: {id: black_card.to_param, black_card: new_attributes}, session: valid_session
         black_card.reload
-        expect(black_card.text).to eq("Riddle me that: {_}")
+        expect(black_card.text).to eq("Why not so serious?")
       end
 
       it "assigns the requested black_card as @black_card" do

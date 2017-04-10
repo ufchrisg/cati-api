@@ -1,12 +1,11 @@
 FactoryGirl.define do
   factory :black_card do
     pack
-    text "Riddle me this: {_}"
+    text "Why so serious?"
   end
   factory :updated_black_card, class: BlackCard do
-    text "Riddle me that: {_}"
+    text "Why not so serious?"
   end
   factory :invalid_black_card, class: BlackCard do
-    text "Invalid text"
   end
 end
