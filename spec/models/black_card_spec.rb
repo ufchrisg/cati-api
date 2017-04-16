@@ -49,4 +49,16 @@ RSpec.describe BlackCard, type: :model do
       expect(association.macro).to eq :belongs_to
     end
   end
+
+  describe "num_vars" do
+    before(:each) { @black_card = FactoryGirl.create(:black_card_no_vars) }
+    it "sets num_vars for new card" do
+      expect(@black_card.num_vars).to eq(1)
+    end
+    it "updates num_vars when text updated" do
+      @black_card.text = "This {1} has {2} variables"
+      @black_card.save
+      expect(@black_card.num_vars).to eq(2)
+    end
+  end
 end
