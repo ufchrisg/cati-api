@@ -55,10 +55,39 @@ RSpec.describe BlackCard, type: :model do
     it "sets num_vars for new card" do
       expect(@black_card.num_vars).to eq(1)
     end
+    it "can be explicitly set if no vars in text" do
+      @black_card.text = "Make a haiku."
+      @black_card.num_vars = 3
+      @black_card.save
+      expect(@black_card.num_vars).to eq(3)
+    end
+    it "uses implicit value if text has vars" do
+      @black_card.text = "{1} {2} {3} vars but trying to say we have 2"
+      @black_card.num_vars = 2
+      @black_card.save
+      expect(@black_card.num_vars).to eq(3)
+    end
+    it "resets to 1 if not explicitly setting and removing vars from text" do
+      black_card = FactoryGirl.create(:black_card_with_vars)
+      black_card.text = "What time is it?"
+      black_card.save
+      expect(black_card.num_vars).to eq(1)
+    end
     it "updates num_vars when text updated" do
       @black_card.text = "This {1} has {2} variables"
       @black_card.save
       expect(@black_card.num_vars).to eq(2)
     end
   end
+
+  # describe "num_draw" do
+  #   before(:each) { @black_card = FactoryGirl.create(:black_card_no_vars) }
+  #   it "sets num_draw for new card" do
+  #     expect(@black_card.num_draw).to eq(0)
+  #   end
+  #   it "only has num_draw for card with num_vars of 3" do
+  #     @black_card.text = "{1} {2} {3} this card asks you to draw 2"
+  #     expect(@black_card.num_draw).to eq(2)
+  #   end
+  # end
 end

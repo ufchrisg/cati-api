@@ -32,7 +32,13 @@ class BlackCard < ApplicationRecord
 	
 	def update_num_vars
 		num_vars = get_vars().length
-		num_vars = 1 if num_vars == 0
+		if num_vars == 0
+			if self.num_vars_changed?
+				num_vars = self.num_vars
+			else
+				num_vars = 1
+			end
+		end
 		self.num_vars = num_vars
 	end
 end
