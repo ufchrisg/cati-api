@@ -5,9 +5,15 @@ class BlackCard < ApplicationRecord
 
 	after_validation :update_num_vars, if: :text_changed?
 	
+	def num_draw
+		if num_vars < 3
+			return 0
+		end
+		num_vars - 1
+	end
+	
 	private
 
-	# private methods
 	def vars_are_numeric
 		return unless text
 		text.match(/\{[^\}]{2,}\}/) { |m| errors.add(:text, "#{m} is not valid") }
@@ -31,14 +37,14 @@ class BlackCard < ApplicationRecord
 	end
 	
 	def update_num_vars
-		num_vars = get_vars().length
-		if num_vars == 0
+		vars = get_vars().length
+		if vars == 0
 			if self.num_vars_changed?
-				num_vars = self.num_vars
+				vars = self.num_vars
 			else
-				num_vars = 1
+				vars = 1
 			end
 		end
-		self.num_vars = num_vars
+		self.num_vars = vars
 	end
 end

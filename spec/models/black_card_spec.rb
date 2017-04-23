@@ -80,14 +80,27 @@ RSpec.describe BlackCard, type: :model do
     end
   end
 
-  # describe "num_draw" do
-  #   before(:each) { @black_card = FactoryGirl.create(:black_card_no_vars) }
-  #   it "sets num_draw for new card" do
-  #     expect(@black_card.num_draw).to eq(0)
-  #   end
-  #   it "only has num_draw for card with num_vars of 3" do
-  #     @black_card.text = "{1} {2} {3} this card asks you to draw 2"
-  #     expect(@black_card.num_draw).to eq(2)
-  #   end
-  # end
+  describe "num_draw" do
+    before(:each) { @black_card = FactoryGirl.build(:black_card_no_vars) }
+    it "has value of 0 for <= 2 vars" do
+      @black_card.text = "{1}"
+      @black_card.save
+      expect(@black_card.num_draw).to eq(0)
+      @black_card.text = "{1} {2}"
+      @black_card.save
+      expect(@black_card.num_draw).to eq(0)
+    end
+    it "has value of 2 for 3 vars" do
+      @black_card.text = "{1} {2} {3} this card asks you to draw 2"
+      @black_card.save
+      expect(@black_card.num_draw).to eq(2)
+    end
+    it "has value of 2 for num_vars explicitly set to 3" do
+      @black_card.text = "No-var text with explicit num_vars of 3"
+      @black_card.num_vars = 3
+      @black_card.save
+      expect(@black_card.num_vars).to eq(3)
+      expect(@black_card.num_draw).to eq(2)
+    end
+  end
 end
