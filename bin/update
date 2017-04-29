@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
-require 'pathname'
-require 'fileutils'
+require "pathname"
+require "fileutils"
 include FileUtils
 
 # path to your application root.
-APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+APP_ROOT = Pathname.new File.expand_path("$1", __FILE__)
 
 def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
@@ -14,16 +14,16 @@ chdir APP_ROOT do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
 
-  puts '== Installing dependencies =='
-  system! 'gem install bundler --conservative'
-  system('bundle check') || system!('bundle install')
+  puts "$1"
+  system! "$1"
+  system("$1") || system!("$1")
 
   puts "\n== Updating database =="
-  system! 'bin/rails db:migrate'
+  system! "$1"
 
   puts "\n== Removing old logs and tempfiles =="
-  system! 'bin/rails log:clear tmp:clear'
+  system! "$1"
 
   puts "\n== Restarting application server =="
-  system! 'bin/rails restart'
+  system! "$1"
 end

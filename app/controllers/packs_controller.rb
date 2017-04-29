@@ -1,5 +1,5 @@
 class PacksController < ApplicationController
-  before_action :set_pack, only: [:show, :update, :destroy]
+  before_action :set_pack, only: %i[show update destroy]
 
   # GET /packs
   def index
@@ -39,13 +39,14 @@ class PacksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pack
-      @pack = Pack.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def pack_params
-      params.require(:pack).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pack
+    @pack = Pack.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def pack_params
+    params.require(:pack).permit(:name)
+  end
 end

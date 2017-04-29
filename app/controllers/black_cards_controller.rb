@@ -1,5 +1,5 @@
 class BlackCardsController < ApplicationController
-  before_action :set_black_card, only: [:show, :update, :destroy]
+  before_action :set_black_card, only: %i[show update destroy]
 
   # GET /black_cards
   def index
@@ -38,13 +38,14 @@ class BlackCardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_black_card
-      @black_card = BlackCard.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def black_card_params
-      params.require(:black_card).permit(:text, :pack_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_black_card
+    @black_card = BlackCard.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def black_card_params
+    params.require(:black_card).permit(:text, :pack_id)
+  end
 end

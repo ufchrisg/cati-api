@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe BlackCard, type: :model do
-  describe "validations" do  
+  describe "validations" do
     before(:each) { @black_card = FactoryGirl.build(:black_card) }
     it "is valid" do
       expect(@black_card).to be_valid

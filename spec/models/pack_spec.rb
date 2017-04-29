@@ -1,7 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Pack, type: :model do
-
   describe "validations" do
     it "is valid" do
       pack = FactoryGirl.build(:pack)
@@ -13,7 +12,7 @@ RSpec.describe Pack, type: :model do
     end
     it "requires unique name" do
       pack1 = FactoryGirl.create(:pack)
-      pack2 = FactoryGirl.build(:pack, :name => pack1.name)
+      pack2 = FactoryGirl.build(:pack, name: pack1.name)
       expect(pack2).not_to be_valid
     end
   end

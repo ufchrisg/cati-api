@@ -1,11 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe PacksController, type: :controller do
-
   let(:valid_attributes) { FactoryGirl.attributes_for(:pack) }
-
   let(:invalid_attributes) { FactoryGirl.attributes_for(:no_name_pack) }
-
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -20,7 +17,7 @@ RSpec.describe PacksController, type: :controller do
   describe "GET #show" do
     it "assigns the requested pack as @pack" do
       pack = FactoryGirl.create(:pack)
-      get :show, params: {id: pack.to_param}, session: valid_session
+      get :show, params: { id: pack.to_param }, session: valid_session
       expect(assigns(:pack)).to eq(pack)
       expect(response.status).to eq(200)
     end
@@ -32,12 +29,12 @@ RSpec.describe PacksController, type: :controller do
 
       it "creates a new Pack" do
         expect {
-          post :create, params: {pack: valid_attributes}, session: valid_session
+          post :create, params: { pack: valid_attributes }, session: valid_session
         }.to change(Pack, :count).by(1)
       end
 
       it "assigns a newly created pack as @pack" do
-        post :create, params: {pack: valid_attributes}, session: valid_session
+        post :create, params: { pack: valid_attributes }, session: valid_session
         expect(assigns(:pack)).to be_a(Pack)
         expect(assigns(:pack)).to be_persisted
       end
@@ -45,7 +42,7 @@ RSpec.describe PacksController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved pack as @pack" do
-        post :create, params: {pack: invalid_attributes}, session: valid_session
+        post :create, params: { pack: invalid_attributes }, session: valid_session
         expect(assigns(:pack)).to be_a_new(Pack)
         expect(response.status).to eq(422)
       end
@@ -60,14 +57,14 @@ RSpec.describe PacksController, type: :controller do
 
       it "updates the requested pack" do
         pack = FactoryGirl.create(:pack)
-        put :update, params: {id: pack.to_param, pack: new_attributes}, session: valid_session
+        put :update, params: { id: pack.to_param, pack: new_attributes }, session: valid_session
         pack.reload
         expect(pack.name).to match(/^Expansion/)
       end
 
       it "assigns the requested pack as @pack" do
         pack = FactoryGirl.create(:pack)
-        put :update, params: {id: pack.to_param, pack: valid_attributes}, session: valid_session
+        put :update, params: { id: pack.to_param, pack: valid_attributes }, session: valid_session
         expect(assigns(:pack)).to eq(pack)
       end
     end
@@ -75,7 +72,7 @@ RSpec.describe PacksController, type: :controller do
     context "with invalid params" do
       it "assigns the pack as @pack" do
         pack = FactoryGirl.create(:pack)
-        put :update, params: {id: pack.to_param, pack: invalid_attributes}, session: valid_session
+        put :update, params: { id: pack.to_param, pack: invalid_attributes }, session: valid_session
         expect(assigns(:pack)).to eq(pack)
         expect(response.status).to eq(422)
       end
@@ -86,10 +83,9 @@ RSpec.describe PacksController, type: :controller do
     it "destroys the requested pack" do
       pack = Pack.create! valid_attributes
       expect {
-        delete :destroy, params: {id: pack.to_param}, session: valid_session
+        delete :destroy, params: { id: pack.to_param }, session: valid_session
       }.to change(Pack, :count).by(-1)
       expect(response.status).to eq(204)
     end
   end
-
 end

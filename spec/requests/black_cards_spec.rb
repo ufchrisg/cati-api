@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "BlackCards", type: :request do
   describe "GET /black_cards" do
