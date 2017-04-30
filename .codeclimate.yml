@@ -1,11 +1,6 @@
 engines:
   rubocop:
     enabled: true
-    checks:
-      Rubocop/Style/Alias:
-        enabled: false
-      Rubocop/Style/LineEndConcatenation:
-        enabled: false
   bundler-audit:
     enabled: true
   duplication:
