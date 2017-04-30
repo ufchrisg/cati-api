@@ -4,7 +4,7 @@ require "fileutils"
 include FileUtils
 
 # path to your application root.
-APP_ROOT = Pathname.new File.expand_path("$1", __FILE__)
+APP_ROOT = Pathname.new File.expand_path("../../", __FILE__)
 
 def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
@@ -14,16 +14,16 @@ chdir APP_ROOT do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
 
-  puts "$1"
-  system! "$1"
-  system("$1") || system!("$1")
+  puts "== Installing dependencies =="
+  system! "gem install bundler --conservative"
+  system("bundle check") || system!("bundle install")
 
   puts "\n== Updating database =="
-  system! "$1"
+  system! "bin/rails db:migrate"
 
   puts "\n== Removing old logs and tempfiles =="
-  system! "$1"
+  system! "bin/rails log:clear tmp:clear"
 
   puts "\n== Restarting application server =="
-  system! "$1"
+  system! "bin/rails restart"
 end
