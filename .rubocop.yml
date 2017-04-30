@@ -106,3 +106,13 @@ StringLiterals:
 
 StringLiteralsInInterpolation:
   Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    "default": "()"
+    "%i": "[]"
+    "%I": "[]"
+    "%r": "{}"
+    "%w": "[]"
+    "%W": "[]"
+  
