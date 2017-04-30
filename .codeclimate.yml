@@ -11,3 +11,7 @@ engines:
           mass_threshold: 25
     exclude_paths:
     - spec/**/*_spec.rb
+ratings:
+  paths:
+  - app/**
+  - "**.rb"
