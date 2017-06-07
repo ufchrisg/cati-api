@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607012542) do
+ActiveRecord::Schema.define(version: 20170607020526) do
 
   create_table "black_cards", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "text"
@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20170607012542) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "white_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "white_cards", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pack_id"
+    t.index ["pack_id"], name: "index_white_cards_on_pack_id"
   end
 
 end

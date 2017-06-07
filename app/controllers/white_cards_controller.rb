@@ -46,6 +46,6 @@ class WhiteCardsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def white_card_params
-      params.require(:white_card).permit(:text)
+      params.require(:white_card).permit(:text, :pack_id)
     end
 end

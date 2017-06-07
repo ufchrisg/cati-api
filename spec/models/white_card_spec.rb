@@ -16,4 +16,11 @@ RSpec.describe WhiteCard, type: :model do
       expect(white_card).not_to be_valid
     end
   end
+
+  describe "associations" do
+    it "belongs to a pack" do
+      association = described_class.reflect_on_association(:pack)
+      expect(association.macro).to eq :belongs_to
+    end
+  end
 end
