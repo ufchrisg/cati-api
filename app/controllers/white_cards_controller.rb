@@ -1,5 +1,5 @@
 class WhiteCardsController < ApplicationController
-  before_action :set_white_card, only: [:show, :update, :destroy]
+  before_action :set_white_card, only: %i[show update destroy]
 
   # GET /white_cards
   def index
@@ -39,13 +39,14 @@ class WhiteCardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_white_card
-      @white_card = WhiteCard.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def white_card_params
-      params.require(:white_card).permit(:text, :pack_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_white_card
+    @white_card = WhiteCard.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def white_card_params
+    params.require(:white_card).permit(:text, :pack_id)
+  end
 end
