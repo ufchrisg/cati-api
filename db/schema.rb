@@ -10,19 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416031236) do
+ActiveRecord::Schema.define(version: 20170607012542) do
 
-  create_table "black_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "text"
+  create_table "black_cards", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "pack_id"
-    t.integer  "num_vars"
-    t.index ["pack_id"], name: "index_black_cards_on_pack_id", using: :btree
+    t.integer "pack_id"
+    t.integer "num_vars"
+    t.index ["pack_id"], name: "index_black_cards_on_pack_id"
   end
 
-  create_table "packs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+  create_table "packs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "white_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
