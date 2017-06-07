@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.describe WhiteCardsController, type: :controller do
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { attributes_with_foreign_keys(:white_card) }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_with_foreign_keys(:invalid_white_card)
   }
 
   let(:valid_session) { {} }
@@ -60,9 +58,7 @@ RSpec.describe WhiteCardsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { FactoryGirl.attributes_for(:updated_white_card) }
 
       it "updates the requested white_card" do
         white_card = WhiteCard.create! valid_attributes
@@ -70,7 +66,7 @@ RSpec.describe WhiteCardsController, type: :controller do
           params: { id: white_card.to_param, white_card: new_attributes },
           session: valid_session
         white_card.reload
-        skip("Add assertions for updated state")
+        expect(white_card.text).to eq("But not Robin.")
       end
 
       it "assigns the requested white_card as @white_card" do
